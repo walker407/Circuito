@@ -1,0 +1,94 @@
+body {
+
+  padding: 50px;
+  font-family: sans-serif;
+  font: 14px;
+  background-color: #333333;
+}
+h1 {
+	color: #FFFFFF;
+}
+
+p {
+	color: #FFFFFF;
+}
+
+a {
+  color: #00B7FF;
+}
+
+table {
+    font-family:monospace;
+    width: 75%;
+    border-collapse: collapse;
+}
+
+td, th {
+    font-size: 1em;
+    border: 2px solid  #57aaff;
+    color: #ffffff;
+    padding: 3px 7px 2px 7px;
+}
+
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color:  #3498ff;
+    color: #ffffff;
+}
+
+tr.alt td {
+    color: #000000;
+    background-color: #EAF2D3;
+}
+
+label.defaultLabel input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+
+label.defaultLabel input[type="submit"] {
+    position: fixed;
+    top: -1000px;
+}
+
+.defaultLabel {
+    /*Fill*/
+    background-color:rgba(0,0,0,0.0);
+    color:#add2f8;
+    /*Stroke*/
+    border:3px solid #add2f8;
+    /*Font*/
+    font-family: monospace;
+    font-size: 14pt;
+    /*Align*/
+    display: inline-block;
+    padding: 15px 45px;
+    margin:  2px;
+    /*Features*/
+    cursor:pointer;
+ 
+}
+.defaultLabel:hover {
+   border:3px solid #57aaff;
+    color:#57aaff;
+}
+.myLabel:active {
+    background: #CCF;
+}
+.uploadLabel :invalid + span {
+    color: #469df5;;
+}
+.uploadLabel :valid + span {
+    color: #469df5;;
+}
+
+div.upload {
+
+    width: 158px;
+    height: 58px;
+    position: fixed;  
+}
+
