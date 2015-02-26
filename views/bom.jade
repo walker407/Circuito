@@ -2,27 +2,14 @@ extends layout
 
 block content
   h1= title
-  
-  table(style='width:75%')
-    tr
+  table
+    thead
         th Name
-        th Value
-        th Type
-  
-    tr
-        td Jill
-        |     
-        td Smith
-        |  
-        |     
-        td 50
-      |   
-    tr
-        td Eve
-        |     
-        td Jackson
-        |  
-        |     
-        td 94
-
-  
+        th Values
+    tbody
+        each part, i in components
+            tr
+                for field in part
+                    td #{field}
+                
+       
