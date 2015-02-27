@@ -5,7 +5,7 @@ var fs 		  = require("fs");
 var XmlStream = require('xml-stream');
 
 router.get('/', function(req, res, next) { 
-  res.render("uploads", {title: "Upload Eagle File"}); 
+  res.render('uploads', {title: "Upload Eagle File"}); 
 }); 
 
 router.post('/', function(req, res, next) { 
@@ -27,9 +27,9 @@ router.post('/', function(req, res, next) {
         fs.exists(req.files.myFile.path, function(exists) { 
             if(exists) { 
                 
-                //Extract Components from Eagle File
-                var components = [];
-                
+                //Extract Parts from Eagle File
+                var parts = [];
+            
                 var stream = fs.createReadStream(req.files.myFile.path);
                 var xml    = new XmlStream(stream);
                 
@@ -40,34 +40,58 @@ router.post('/', function(req, res, next) {
                 xml.on('endElement: element', function(item) {
 	
 	                var name     = item['$']['name'];
-                    var value    = item['$']['value'];    
-                    var pair     = {name: name, value: value};
-                
-                    components.push(pair);
+                    var value    = item['$']['value'];
+                    var package  = item['$']['package'];
+                    var qty      = 1;
+                    
+                    var part     = {qty: qty,value: value, package: package};
+                    
+                    if(!hasPart(parts,part)) {
+                        parts.push(part);
+                    }
+                    
                 });
                 
                 //When finished, save data in session and redirect to bom view
                 xml.on('end',function() {
-                    
-                    //Delete .BRD File
-                    fs.unlink(req.files.myFile.path, function(err) {
-                        console.log(req.files.myFile.name + ' has been deleted');
-                    });
+                        
+                    console.log(req.files.myFile.name + ' has been deleted');
 
-                    //Save Components in a Session
-                    req.session.components = components;
+                    req.session.parts = parts;
 
                     //Redirect to BOM View
                     res.location('bom');
                     res.redirect('bom');
-                    
+
                 });
-                  
+                
+                //Delete .BRD File
+                fs.unlink(req.files.myFile.path, function(err) {
+                    console.log(req.files.myFile.name + ' has been deleted');
+                });  
+                
             } else { 
                 res.end("Unknown Error :/ "); 
             } 
         }); 
-    } 
+    }
+    
+     
+    
 });
+
+
+function hasPart(parts,part) {
+    
+    for (var i = 0; parts.length > i; i += 1) {
+        if (parts[i].value === part.value && parts[i].package === part.package) {
+            parts[i].qty +=1;
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 
 module.exports = router;

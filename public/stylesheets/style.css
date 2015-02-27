@@ -57,9 +57,9 @@ label.defaultLabel input[type="submit"] {
 .defaultLabel {
     /*Fill*/
     background-color:rgba(0,0,0,0.0);
-    color:#add2f8;
+    color:#57aaff;
     /*Stroke*/
-    border:3px solid #add2f8;
+    border:3px solid #57aaff;
     /*Font*/
     font-family: monospace;
     font-size: 14pt;
@@ -72,8 +72,8 @@ label.defaultLabel input[type="submit"] {
  
 }
 .defaultLabel:hover {
-   border:3px solid #57aaff;
-    color:#57aaff;
+   border:3px solid #add2f8;
+    color:#add2f8;
 }
 .myLabel:active {
     background: #CCF;

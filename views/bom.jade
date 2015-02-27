@@ -1,15 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  table
-    thead
-        th Name
-        th Values
-    tbody
-        each part, i in components
-            tr
-                for field in part
-                    td #{field}
+    h1= title
+    table
+        thead
+            th Qty
+            th Part
+            th Package
+
+        tbody
+            each part, i in parts
+                tr
+                    for field in part
+                        td #{field}
+    br   
+    form(action='/')
+        label.defaultLabel
+            input(type='submit')
+            span Start Over
                 
-       
